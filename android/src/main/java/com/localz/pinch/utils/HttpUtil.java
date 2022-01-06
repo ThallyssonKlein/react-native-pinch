@@ -28,6 +28,8 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import com.localz.pinch.utils.NullHostNameVerifier;
+
 public class HttpUtil {
     private static final String DEFAULT_CONTENT_TYPE = "application/json";
 
@@ -119,6 +121,7 @@ public class HttpUtil {
             throws IOException, KeyStoreException, CertificateException, KeyManagementException, NoSuchAlgorithmException, JSONException {
         InputStream responseStream = null;
         HttpResponse response = new HttpResponse();
+        HttpsURLConnection.setDefaultHostnameVerifier(new NullHostNameVerifier());
         HttpsURLConnection connection;
         int status;
         String statusText;
